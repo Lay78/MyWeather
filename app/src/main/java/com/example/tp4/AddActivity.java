@@ -47,7 +47,7 @@ public class AddActivity extends AppCompatActivity {
                     return;
                 }
                 else {
-                    MainActivity.usersList.add(sUsername);
+                    MainActivity.cities_list.add(sUsername);
                 }
             }
         });

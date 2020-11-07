@@ -19,7 +19,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     //list of users
-    public static List<String> usersList;
+    public static List<String> cities_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
