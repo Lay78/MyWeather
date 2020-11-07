@@ -8,6 +8,9 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
 
         cities_list = new ArrayList<>();
         cities_list.add("Paris");
+
+        if (cities_list.size() > 0){
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction ft = manager.beginTransaction();
+            Fragment bottomFragment = manager.findFragmentById(R.id.nav_host_fragment);
+            ft.hide(bottomFragment);
+            ft.commit();
+        }
 
         //RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
