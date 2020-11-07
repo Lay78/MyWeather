@@ -38,12 +38,8 @@ public class MainActivity extends AppCompatActivity {
         cities_list = new ArrayList<>();
         cities_list.add("Paris");
 
-        if (cities_list.size() > 0){
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction ft = manager.beginTransaction();
-            Fragment bottomFragment = manager.findFragmentById(R.id.nav_host_fragment);
-            ft.hide(bottomFragment);
-            ft.commit();
+        for (int i = 0; i < 100; i++) {
+            cities_list.add("city n°" + i);
         }
 
         //RecyclerView
@@ -53,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.Adapter adapter = new MainAdapter(cities_list);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+        if (cities_list.size() > 0){
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction ft = manager.beginTransaction();
+            Fragment bottomFragment = manager.findFragmentById(R.id.nav_host_fragment);
+            ft.hide(bottomFragment);
+            ft.commit();
+        }
 
         //button to go to the add activity
         FloatingActionButton fab = findViewById(R.id.fab_add);
