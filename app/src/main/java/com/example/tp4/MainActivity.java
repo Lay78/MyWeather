@@ -21,9 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.Adapter adapter = new MainAdapter(cities_list);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
+        //add separator lines for RecyclerView
+        //recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         if (cities_list.size() > 0){
             FragmentManager manager = getSupportFragmentManager();
