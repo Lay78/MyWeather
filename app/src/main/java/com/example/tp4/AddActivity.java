@@ -48,6 +48,7 @@ public class AddActivity extends AppCompatActivity {
                 }
                 else {
                     MainActivity.cities_list.add(sUsername);
+                    startActivity(new Intent(AddActivity.this, MainActivity.class));
                 }
             }
         });
