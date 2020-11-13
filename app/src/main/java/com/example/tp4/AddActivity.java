@@ -47,7 +47,8 @@ public class AddActivity extends AppCompatActivity {
                     return;
                 }
                 else {
-                    MainActivity.cities_list.add(sUsername);
+                    CityModel city = new CityModel(sUsername, "", 0, 0, 0, 0);
+                    MainActivity.cities_list.add(city);
                     startActivity(new Intent(AddActivity.this, MainActivity.class));
                 }
             }

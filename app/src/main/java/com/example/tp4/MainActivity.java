@@ -25,9 +25,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    //list of users
-    public static ArrayList<String> cities_list;
+    //list of cities
+    //public static ArrayList<String> cities_list;
 
+    //list of city model contains: name, weather and temperatures
+    public static ArrayList<CityModel> cities_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +39,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         cities_list = new ArrayList<>();
-        cities_list.add("Paris");
 
-        for (int i = 0; i < 10; i++) {
+        //test
+        CityModel paris = new CityModel("Paris", "01n", 15, 13, 15, 15);
+        cities_list.add(paris);
+
+        /*for (int i = 0; i < 10; i++) {
             cities_list.add("city n°" + i);
-        }
+        }*/
 
         //RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recycler_view);

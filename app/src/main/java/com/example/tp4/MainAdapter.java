@@ -12,9 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
-    ArrayList<String> cities_list;
+    ArrayList<CityModel> cities_list;
 
-    public MainAdapter(ArrayList<String> cities){
+    public MainAdapter(ArrayList<CityModel> cities){
         cities_list = cities;
     }
 
@@ -30,7 +30,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, int position) {
-        holder.city_name.setText(cities_list.get(position));
+        holder.city_name.setText(cities_list.get(position).getCity_name());
     }
 
     @Override
