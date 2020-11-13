@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         cities_list = new ArrayList<>();
         cities_list.add("Paris");
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             cities_list.add("city n°" + i);
         }
 

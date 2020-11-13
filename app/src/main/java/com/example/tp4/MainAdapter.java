@@ -3,6 +3,7 @@ package com.example.tp4;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,11 +18,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         cities_list = cities;
     }
 
+
     //ViewHolder = visually represent an item of the ArrayList in the RecyclerView
     @NonNull
     @Override
     public MainAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false);
+
         return new ViewHolder(view);
     }
 
@@ -38,11 +41,17 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView city_name;
+        ImageView weather_icon;
+        TextView temperature;
+        TextView temp_feels_like;
+        TextView temp_min;
+        TextView temp_max;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             city_name = (TextView) itemView.findViewById(R.id.city);
         }
     }
+
+
 }
