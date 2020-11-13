@@ -23,7 +23,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainAdapter.SelectedCity {
 
     //list of cities
     //public static ArrayList<String> cities_list;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        RecyclerView.Adapter adapter = new MainAdapter(cities_list);
+        RecyclerView.Adapter adapter = new MainAdapter(cities_list, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
@@ -100,5 +100,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void selectedCity(CityModel cityModel) {
+        startActivity(new Intent(MainActivity.this, WeatherCityActivity.class).putExtra("data", cityModel));
     }
 }

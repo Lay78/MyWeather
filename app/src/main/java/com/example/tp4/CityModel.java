@@ -1,6 +1,8 @@
 package com.example.tp4;
 
-public class CityModel {
+import java.io.Serializable;
+
+public class CityModel implements Serializable {
     private String city_name;
     private String type_weather;
     private int temperature;

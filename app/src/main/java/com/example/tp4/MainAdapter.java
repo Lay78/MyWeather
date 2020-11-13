@@ -1,5 +1,6 @@
 package com.example.tp4;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     ArrayList<CityModel> cities_list;
+    private Context context;
+    private SelectedCity selectedCity;
 
-    public MainAdapter(ArrayList<CityModel> cities){
-        cities_list = cities;
+    public MainAdapter(ArrayList<CityModel> cities, SelectedCity selectedCity) {
+        this.cities_list = cities;
+        this.selectedCity = selectedCity;
     }
 
 
@@ -31,11 +35,19 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, int position) {
         holder.city_name.setText(cities_list.get(position).getCity_name());
+        /*holder.temperature.setText(cities_list.get(position).getTemperature());
+        holder.temp_feels_like.setText(cities_list.get(position).getTemp_feels_like());
+        holder.temp_min.setText(cities_list.get(position).getTemp_min());
+        holder.temp_max.setText(cities_list.get(position).getTemp_max());*/
     }
 
     @Override
     public int getItemCount() {
         return cities_list.size();
+    }
+
+    public interface SelectedCity {
+        void selectedCity(CityModel cityModel);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -50,6 +62,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             city_name = (TextView) itemView.findViewById(R.id.city);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selectedCity.selectedCity(cities_list.get(getAdapterPosition()));
+                }
+            });
         }
     }
 
