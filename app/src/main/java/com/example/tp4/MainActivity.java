@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         //add separator lines for RecyclerView
         //recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
+        //when the list of cities is not empty
         if (cities_list.size() > 0){
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
