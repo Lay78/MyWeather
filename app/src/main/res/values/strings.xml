@@ -13,4 +13,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="tv_add_activity">Enter the name of the city you want to add:</string>
     <string name="btn_save">Save</string>
+
+    <string name="action_delete">Delete</string>
 </resources>
