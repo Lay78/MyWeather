@@ -3,6 +3,8 @@ package com.example.tp4;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -24,9 +26,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MainAdapter.SelectedCity {
 
-    //list of cities
-    //public static ArrayList<String> cities_list;
-
     //list of city model contains: name, weather and temperatures
     public static ArrayList<CityModel> cities_list;
 
@@ -42,10 +41,6 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Selec
         //test
         CityModel paris = new CityModel("Paris", "01n", 15, 13, 15, 15);
         cities_list.add(paris);
-
-        /*for (int i = 0; i < 10; i++) {
-            cities_list.add("city n°" + i);
-        }*/
 
         //RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
