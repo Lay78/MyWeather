@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -17,11 +18,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class WeatherCityActivity extends AppCompatActivity {
 
-    TextView tv_city;
+    ImageView weather_icon;
+    TextView tv_city, tv_temperature, tv_feels_like, tv_temp_min, tv_temp_max;
     private String city_name;
 
     //with Volley
@@ -45,6 +49,10 @@ public class WeatherCityActivity extends AppCompatActivity {
         });
 
         tv_city = findViewById(R.id.tv_city);
+        tv_temperature = findViewById(R.id.tv_temperature);
+        tv_feels_like = findViewById(R.id.tv_feels_like);
+        tv_temp_min = findViewById(R.id.tv_temp_min);
+        tv_temp_max = findViewById(R.id.tv_temp_max);
 
         Intent intent = getIntent();
 
@@ -66,6 +74,34 @@ public class WeatherCityActivity extends AppCompatActivity {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                try {
+                    JSONObject main_object = response.getJSONObject("main");
+                    JSONArray jsonArray = response.getJSONArray("weather");
+                    JSONObject object = jsonArray.getJSONObject(0);
+
+                    //temperature
+                    double temp_double = main_object.getDouble("temp");
+                    int temp_int = (int)Math.round(temp_double);
+                    tv_temperature.setText(String.valueOf(temp_int) + "°C");
+
+                    //felt temperature
+                    double felt_double = main_object.getDouble("feels_like");
+                    int felt_int = (int)Math.round(felt_double);
+                    tv_feels_like.setText("feels like " + String.valueOf(felt_int) + "°C");
+
+                    //min temperature
+                    double min_double = main_object.getDouble("temp_min");
+                    int min_int = (int)Math.round(min_double);
+                    tv_temp_min.setText("↓ Min. " + String.valueOf(min_int) + "°C");
+
+                    //max temperature
+                    double max_double = main_object.getDouble("temp_max");
+                    int max_int = (int)Math.round(max_double);
+                    tv_temp_max.setText("↑ Max. " + String.valueOf(max_int) + "°C");
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
             }
         }, new Response.ErrorListener(){
@@ -74,6 +110,8 @@ public class WeatherCityActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         });
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(request);
     }
 
     @Override

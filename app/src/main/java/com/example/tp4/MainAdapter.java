@@ -55,11 +55,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView city_name;
-        ImageView weather_icon;
-        TextView temperature;
-        TextView temp_feels_like;
-        TextView temp_min;
-        TextView temp_max;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
