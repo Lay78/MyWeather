@@ -3,7 +3,9 @@ package com.example.tp4;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +29,7 @@ public class WeatherCityActivity extends AppCompatActivity {
     ImageView weather_icon;
     TextView tv_city, tv_temperature, tv_feels_like, tv_temp_min, tv_temp_max;
     private String city_name;
+    private ImageView imageView;
 
     //with Volley
     private RequestQueue mQueue;
@@ -98,6 +101,14 @@ public class WeatherCityActivity extends AppCompatActivity {
                     double max_double = main_object.getDouble("temp_max");
                     int max_int = (int)Math.round(max_double);
                     tv_temp_max.setText("↑ Max. " + String.valueOf(max_int) + "°C");
+
+                    //weather image
+                    String field_value = main_object.getString("icon");
+                    String uri = "@drawable/img_" + field_value + ".png";
+                    int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+                    imageView = (ImageView) findViewById(R.id.imageView);
+                    @SuppressLint("UseCompatLoadingForDrawables") Drawable res = getResources().getDrawable(imageResource);
+                    imageView.setImageDrawable(res);
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
