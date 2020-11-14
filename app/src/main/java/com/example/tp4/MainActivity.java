@@ -66,13 +66,13 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Selec
             ft.commit();
         }
 
-        /*else {
+        else {
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
-            Fragment bottomFragment = manager.findFragmentById(R.id.);
-            ft.hide(bottomFragment);
+            Fragment bottomFragment = manager.findFragmentById(R.id.nav_host_fragment);
+            ft.show(bottomFragment);
             ft.commit();
-        }*/
+        }
 
         //button to go to the add activity
         FloatingActionButton fab = findViewById(R.id.fab_add);
