@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -57,6 +58,8 @@ public class WeatherCityActivity extends AppCompatActivity {
         tv_temp_min = findViewById(R.id.tv_temp_min);
         tv_temp_max = findViewById(R.id.tv_temp_max);
 
+        imageView = (ImageView)findViewById(R.id.imageView);
+
         Intent intent = getIntent();
 
         if (intent.getExtras() != null) {
@@ -80,7 +83,7 @@ public class WeatherCityActivity extends AppCompatActivity {
                 try {
                     JSONObject main_object = response.getJSONObject("main");
                     JSONArray jsonArray = response.getJSONArray("weather");
-                    JSONObject object = jsonArray.getJSONObject(0);
+                    JSONObject icon_object = jsonArray.getJSONObject(0);
 
                     //temperature
                     double temp_double = main_object.getDouble("temp");
@@ -102,13 +105,24 @@ public class WeatherCityActivity extends AppCompatActivity {
                     int max_int = (int)Math.round(max_double);
                     tv_temp_max.setText("↑ Max. " + String.valueOf(max_int) + "°C");
 
+
                     //weather image
-                    String field_value = main_object.getString("icon");
-                    String uri = "@drawable/img_" + field_value + ".png";
-                    int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+                    String icon = icon_object.getString("icon");
+                    String namefile = "img_" + icon + ".png";
+
+                    Uri imgUri = Uri.parse("android.resource://" + getPackageName() + "/drawable/" + namefile);
+                    imageView.setImageURI(null);
+                    imageView.setImageURI(imgUri);
+
+
+
+                    /*int imageResource = getResources().getIdentifier(uri, null, getPackageName());
                     imageView = (ImageView) findViewById(R.id.imageView);
-                    @SuppressLint("UseCompatLoadingForDrawables") Drawable res = getResources().getDrawable(imageResource);
-                    imageView.setImageDrawable(res);
+                    Drawable res = getResources().getDrawable(imageResource);
+                    imageView.setImageDrawable(res);*/
+
+                    tv_temp_max.setText("namefile = " + namefile);
+
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
