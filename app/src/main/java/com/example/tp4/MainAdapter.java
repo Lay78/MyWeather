@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     ArrayList<CityModel> cities_list;
-    private Context context;
     private SelectedCity selectedCity;
 
     public MainAdapter(ArrayList<CityModel> cities, SelectedCity selectedCity) {

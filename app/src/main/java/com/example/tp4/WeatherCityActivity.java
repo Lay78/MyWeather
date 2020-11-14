@@ -1,9 +1,11 @@
 package com.example.tp4;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,7 +30,6 @@ import org.json.JSONObject;
 
 public class WeatherCityActivity extends AppCompatActivity {
 
-    ImageView weather_icon;
     TextView tv_city, tv_temperature, tv_feels_like, tv_temp_min, tv_temp_max;
     private String city_name;
     private ImageView imageView;
@@ -145,9 +147,30 @@ public class WeatherCityActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_delete) {
+            showAlertDialog();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //configure the AlertDialog when we click on "Delete" button
+    public void showAlertDialog(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Warning!");
+        alert.setMessage("Are you sure you want to delete this city from your favorites?");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(WeatherCityActivity.this, "Click yes", Toast.LENGTH_SHORT);
+            }
+        });
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(WeatherCityActivity.this, "Click no", Toast.LENGTH_SHORT);
+            }
+        });
+        alert.create().show();
     }
 }
