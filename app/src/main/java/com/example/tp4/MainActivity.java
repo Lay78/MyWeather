@@ -20,6 +20,7 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,10 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements MainAdapter.SelectedCity {
 
     //list of city model contains: name, weather and temperatures
-    public static ArrayList<CityModel> cities_list;
+    public static ArrayList<CityModel> cities_list = new ArrayList<>();
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +40,17 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Selec
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        cities_list = new ArrayList<>();
+        //cities_list = new ArrayList<>();
 
         //test
-        CityModel paris = new CityModel("Paris", "01n", 15, 13, 15, 15);
-        cities_list.add(paris);
+        //CityModel paris = new CityModel("Paris", "01n", 15, 13, 15, 15);
+        //cities_list.add(paris);
 
         //RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        RecyclerView.Adapter adapter = new MainAdapter(cities_list, this);
+        layoutManager = new LinearLayoutManager(this);
+        adapter = new MainAdapter(cities_list, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
@@ -83,6 +87,13 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Selec
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+        //recyclerQuestion.setAdapter(adapterRecyclerQuestion);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -98,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Selec
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_delete) {
+            Toast toast = Toast.makeText(getApplicationContext(), printCitiesList(), Toast.LENGTH_LONG);
+            toast.show();
             return true;
         }
 
@@ -107,5 +120,14 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Selec
     @Override
     public void selectedCity(CityModel cityModel) {
         startActivity(new Intent(MainActivity.this, WeatherCityActivity.class).putExtra("data", cityModel));
+    }
+
+    //function of test
+    public String printCitiesList(){
+        String strCitiesList = "list of cities:\n";
+        for (CityModel city : cities_list){
+            strCitiesList += city.getCity_name() + "\n";
+        }
+        return strCitiesList;
     }
 }

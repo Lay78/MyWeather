@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import static com.example.tp4.MainActivity.cities_list;
+
 public class AddActivity extends AppCompatActivity {
 
     public void toastMsg(String msg) {
@@ -48,7 +50,7 @@ public class AddActivity extends AppCompatActivity {
                 }
                 else {
                     CityModel city = new CityModel(sUsername, "", 0, 0, 0, 0);
-                    MainActivity.cities_list.add(city);
+                    cities_list.add(city);
                     startActivity(new Intent(AddActivity.this, MainActivity.class));
                 }
             }
