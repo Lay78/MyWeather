@@ -162,13 +162,14 @@ public class WeatherCityActivity extends AppCompatActivity {
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(WeatherCityActivity.this, "Click yes", Toast.LENGTH_SHORT);
+                //MainActivity.cities_list.remove(city);
+                startActivity(new Intent(WeatherCityActivity.this, MainActivity.class));
             }
         });
         alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(WeatherCityActivity.this, "Click no", Toast.LENGTH_SHORT);
+                return;
             }
         });
         alert.create().show();

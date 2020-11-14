@@ -45,7 +45,7 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String sUsername = usernameEditText.getText().toString();
                 if (sUsername.matches("")) {
-                    toastMsg("You must enter a username.");
+                    toastMsg("You must enter a city name.");
                     return;
                 }
                 else {
