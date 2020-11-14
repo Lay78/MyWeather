@@ -109,27 +109,10 @@ public class WeatherCityActivity extends AppCompatActivity {
                     //weather image
                     String icon = icon_object.getString("icon");
                     String namefile = "img_" + icon;
-
-                    String uri = "@drawable/" + namefile;  // where myresource (without the extension) is the file
-
+                    String uri = "@drawable/" + namefile; //warning: remove extension of the file
                     int imageResource = getResources().getIdentifier(uri, null, getPackageName());
-
                     Drawable res = getResources().getDrawable(imageResource);
                     imageView.setImageDrawable(res);
-
-                    /*Uri imgUri = Uri.parse("android.resource://" + getPackageName() + "/drawable/" + namefile);
-                    imageView.setImageURI(null);
-                    imageView.setImageURI(imgUri);*/
-
-
-
-                    /*int imageResource = getResources().getIdentifier(uri, null, getPackageName());
-                    imageView = (ImageView) findViewById(R.id.imageView);
-                    Drawable res = getResources().getDrawable(imageResource);
-                    imageView.setImageDrawable(res);*/
-
-                    //tv_temp_max.setText("namefile = " + namefile);
-
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
