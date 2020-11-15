@@ -46,6 +46,9 @@ public class WeatherCityActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //back button for toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mQueue = Volley.newRequestQueue(this);
 
         //add a back button for toolbar
@@ -150,6 +153,13 @@ public class WeatherCityActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_delete) {
             showAlertDialog();
+            return true;
+        }
+
+        if (id == R.id.home){
+            Intent intent = new Intent(WeatherCityActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
             return true;
         }
 
