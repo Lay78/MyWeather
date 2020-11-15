@@ -15,4 +15,10 @@
     <string name="btn_save">Save</string>
 
     <string name="action_delete">Delete</string>
+    <string name="tv_city_name">TextView</string>
+    <string name="tv_temperature">TextView</string>
+    <string name="tv_feels_like">TextView</string>
+    <string name="tv_temp_min">TextView</string>
+    <string name="image_umbrella">umbrella</string>
+    <string name="tv_temp_max">TextView</string>
 </resources>
