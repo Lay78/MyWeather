@@ -54,8 +54,10 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Selec
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-        //if (cities_list.isEmpty())
-        //    recyclerView.setVisibility(View.GONE);
+        //when the list of cities is empty
+        if (cities_list.isEmpty()){
+            startActivity(new Intent(MainActivity.this, EmptyActivity.class));
+        }
 
         //add separator lines for RecyclerView
         //recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
