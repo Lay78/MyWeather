@@ -162,7 +162,7 @@ public class WeatherCityActivity extends AppCompatActivity {
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //MainActivity.cities_list.remove(city);
+                MainActivity.cities_list.removeIf(c -> c.getCity_name().equals(city_name));
                 startActivity(new Intent(WeatherCityActivity.this, MainActivity.class));
             }
         });

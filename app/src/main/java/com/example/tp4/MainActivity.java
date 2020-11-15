@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Selec
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
+        //if (cities_list.isEmpty())
+        //    recyclerView.setVisibility(View.GONE);
+
         //add separator lines for RecyclerView
         //recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
@@ -90,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Selec
     protected void onResume() {
         super.onResume();
         adapter.notifyDataSetChanged();
-        //recyclerQuestion.setAdapter(adapterRecyclerQuestion);
     }
 
     @Override
