@@ -1,5 +1,6 @@
 package com.example.tp4;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -160,9 +162,10 @@ public class WeatherCityActivity extends AppCompatActivity {
         alert.setTitle("Warning!");
         alert.setMessage("Are you sure you want to delete this city from your favorites?");
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //MainActivity.cities_list.remove(city);
+                MainActivity.cities_list.removeIf(c -> c.getCity_name().equals(city_name));
                 startActivity(new Intent(WeatherCityActivity.this, MainActivity.class));
             }
         });
