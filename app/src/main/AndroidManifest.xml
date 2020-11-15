@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tp4">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,8 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TP4.NoActionBar">
-        <activity android:name=".EmptyActivity"></activity>
-        <activity android:name=".WeatherCityActivity" />
+        <activity android:name=".WeatherCityActivity"></activity>
         <activity android:name=".AddActivity" />
         <activity
             android:name=".MainActivity"
@@ -23,7 +24,5 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
